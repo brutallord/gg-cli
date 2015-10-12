@@ -1,0 +1,4 @@
+master = release.4.24.0
+project_root = /srv/www
+environment_root = /home/alex/.virtualenvs
+
