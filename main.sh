@@ -41,6 +41,8 @@ elif [ "$1" == "go" ]; then
   else
     echo "unknown project"
   fi
+elif [ "$1" == "webpack" ]; then
+    webpack --watch --colors --progress
 elif [ "$1" == "config" ]; then
   if [ "$#" == 2 ]; then
     echo $(get_config $2)
