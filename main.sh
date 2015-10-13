@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #return if not sourced
-if [ $0 != "-bash" ]; then
+if [ "$0" != "-bash" ]; then
   echo "Run as source gg"
   exit
 fi
@@ -20,12 +20,12 @@ import configuration.sh
 import project.sh
 
 #run command
-if [ $1 == "run" ]; then
-  if [[ $2 == "airborne" || $2 == "bowman" || $2 == "cessna" || $2 == "fokker" ]]; then
-    clear
+if [ "$1" == "run" ]; then
+  if [[ "$2" == "airborne" || "$2" == "bowman" || "$2" == "cessna" || "$2" == "fokker" ]]; then
     move_to $2
-    use_environment $2
-    if [ $2 == "airborne" ]; then
+    activate_environment $2
+    clear
+    if [ "$2" == "airborne" ]; then
       honcho start
     else
       honcho start worker
@@ -33,10 +33,18 @@ if [ $1 == "run" ]; then
   else
     echo "unknown project"
   fi
-elif [ $1 == "config" ]; then
-  if [ $# == 2 ]; then
+elif [ "$1" == "go" ]; then
+  if [[ "$2" == "airborne" || "$2" == "bowman" || "$2" == "cessna" || "$2" == "fokker" ]]; then
+    move_to $2
+    activate_environment $2
+    clear
+  else
+    echo "unknown project"
+  fi
+elif [ "$1" == "config" ]; then
+  if [ "$#" == 2 ]; then
     echo $(get_config $2)
-  elif [ $# == 3 ]; then
+  elif [ "$#" == 3 ]; then
     $(set_config $2 $3)
   else
     echo "incorrect config command arguments"
