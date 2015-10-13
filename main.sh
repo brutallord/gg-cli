@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #return if not sourced
 if [ $0 != "-bash" ]; then
   echo "Run as source gg"
@@ -16,7 +17,7 @@ import() {
 #imports
 import colors.sh
 import configuration.sh
-import use.sh
+import project.sh
 
 #run command
 if [ $1 == "run" ]; then
